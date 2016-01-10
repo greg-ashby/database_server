@@ -1,5 +1,6 @@
 var http = require('http');
 
+const GENERIC_ERROR = "Invalid URL. Please ensure you use either /get?key=somekey or /set?somekey=somevalue.";
 const PORT = 4000;
 db = {};
 
@@ -32,11 +33,11 @@ function requestHandler(request, response){
       response.end("Stored [" + nameValuePair[1] + "] for key: " + nameValuePair[0]);
     } else {
       console.log(url);
-      response.end('Invalid url.');
+      response.end(GENERIC_ERROR);
     }
   } catch (err) {
     console.log("ERROR: URL is " + url + " - Message is " + err);
-    response.end("");
+    response.end(GENERIC_ERROR);
   }
 }
 
